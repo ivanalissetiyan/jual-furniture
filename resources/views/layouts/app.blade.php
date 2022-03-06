@@ -145,7 +145,7 @@
     @livewireScripts
 
 
-    <!--- Tambahkan setelah @livewireScripts --->
+    {{-- Tambahkan setelah @livewireScripts --}}
     {{ $script ?? '' }}
 </body>
 
