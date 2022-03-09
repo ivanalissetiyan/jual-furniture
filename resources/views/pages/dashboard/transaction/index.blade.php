@@ -22,14 +22,6 @@
                         name: 'name'
                     },
                     {
-                        data: 'email',
-                        name: 'email'
-                    },
-                    {
-                        data: 'address',
-                        name: 'address'
-                    },
-                    {
                         data: 'phone',
                         name: 'phone'
                     },
@@ -76,14 +68,12 @@
                 </div>
             @endif
             <div class="shadow overflow-hidden sm-rounded-md">
-                <div class="px-4 py-5 bg-white sm:p-6">
+                <div class="px-4 py-5 bg-white sm:p-6 text-left">
                     <table id="crudTable">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Nama</th>
-                                <th>Email</th>
-                                <th>Alamat</th>
                                 <th>No Handphone</th>
                                 <th>Kurir</th>
                                 <th>Total Harga</th>
