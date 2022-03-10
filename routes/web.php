@@ -6,6 +6,7 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ProductGalleryController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,9 @@ Route::middleware(['auth:sanctum', 'verified'])->name('dashboard.')->prefix('das
         ]);
         Route::resource('transaction', TransactionController::class)->shallow()->only([
             'index', 'show', 'edit', 'update'
+        ]);
+        Route::resource('user', UserController::class)->shallow()->only([
+            'index', 'edit', 'update', 'destroy'
         ]);
     });
 });
