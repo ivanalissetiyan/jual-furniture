@@ -21,12 +21,19 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::get('/details/{slug}', [FrontendController::class, 'details'])->name('details');
-Route::get('/cart', [FrontendController::class, 'cart'])->name('cart');
-Route::get('/checkout/success', [FrontendController::class, 'success'])->name('checkout-success');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('/cart', [FrontendController::class, 'cart'])->name('cart');
+    Route::post('cart/{id}', [FrontendController::class, 'cartAdd'])->name('cart-add');
+    Route::get('/checkout/success', [FrontendController::class, 'success'])->name('checkout-success');
+});
+
+
 
 Route::middleware(['auth:sanctum', 'verified'])->name('dashboard.')->prefix('dashboard')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('index');
