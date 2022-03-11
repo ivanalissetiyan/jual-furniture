@@ -27,14 +27,17 @@ class FrontendController extends Controller
     {
         Cart::create([
             'users_id' => Auth::user()->id,
-            'products_id' => $id
+            'products_id' => $id,
         ]);
+
         return redirect('cart');
     }
 
     public function cart(Request $request)
     {
-        return view('pages.frontend.cart');
+        $carts = Cart::with(['product.galleries'])->where('users_id', Auth::user()->id)->get();
+
+        return view('pages.frontend.cart', compact('carts'));
     }
 
     public function success(Request $request)
