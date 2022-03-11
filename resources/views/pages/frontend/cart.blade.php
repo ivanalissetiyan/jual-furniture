@@ -50,12 +50,13 @@
                         </div>
                     </div>
 
+
+                    <!-- START: ROW 1 -->
                     @forelse ($carts as $item)
-                        <!-- START: ROW 1 -->
                         <div class="flex flex-start flex-wrap items-center mb-4 -mx-4" data-row="1">
                             <div class="px-4 flex-none">
                                 <div class="" style="width: 90px; height: 90px">
-                                    <img src="{{ $item->product->galleries()->exists()? Storage::url($item->product->galleries->first()->url): 'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==' }}"
+                                    <img src="{{ $item->product->galleries()->exists()? Storage::url($item->product->galleries->first()->url): 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN88B8AAsUB4ZtvXtIAAAAASUVORK5CYII=' }}"
                                         alt="chair-1" class="object-cover rounded-xl w-full h-full" />
                                 </div>
                             </div>
@@ -72,27 +73,29 @@
                             </div>
                             <div class="px-4 w-auto flex-none md:flex-1 md:w-5/12 hidden md:block">
                                 <div class="">
-                                    <h6 class="font-semibold text-lg">IDR {{ number_format($item->product->price) }}</h6>
+                                    <h6 class="font-semibold text-lg">IDR {{ number_format($item->product->price) }}
+                                    </h6>
                                 </div>
                             </div>
                             <div class="px-4 w-2/12">
                                 <div class="text-center">
-                                    <button data-delete-item="1"
-                                        class="text-red-600 border-none focus:outline-none px-3 py-1">
-                                        X
-                                    </button>
+                                    <form action="{{ route('cart-delete', $item->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="text-red-600 border-none focus:outline-none px-3 py-1">
+                                            X
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                        <!-- END: ROW 1 -->
-
                     @empty
                         <p id="cart-empty" class="text-center py-8">
                             Ooops... Cart is empty
-                            <a href="details.html" class="underline">Shop Now</a>
+                            <a href="{{ route('index') }}" class="underline">Shop Now</a>
                         </p>
                     @endforelse
-
+                    <!-- END: ROW 1 -->
                 </div>
                 <div class="w-full md:px-4 md:w-4/12" id="shipping-detail">
                     <div class="bg-gray-100 px-4 py-6 md:p-8 md:rounded-3xl">
