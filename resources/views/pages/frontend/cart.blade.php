@@ -91,7 +91,7 @@
                         </div>
                     @empty
                         <p id="cart-empty" class="text-center py-8">
-                            Ooops... Cart is empty
+                            Ooops... Data Cart Kosong
                             <a href="{{ route('index') }}" class="underline">Shop Now</a>
                         </p>
                     @endforelse
